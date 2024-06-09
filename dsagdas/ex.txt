@@ -1,0 +1,15 @@
+CREATE FUNCTION fn_ContagemClientesCadastradosPorDia
+(
+    @Data date
+)
+RETURNS int
+AS
+BEGIN
+    DECLARE @ContagemClientes int;
+
+    SELECT @ContagemClientes = COUNT(*)
+    FROM TabelaDeClientes
+    WHERE CONVERT(date, DataCadastro) = @Data;
+
+    RETURN @ContagemClientes;
+END;
