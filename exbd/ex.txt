@@ -1,0 +1,15 @@
+CREATE PROCEDURE sp_QuantidadeProdutosCompradosPorDia
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        CONVERT(date, DataCompra) AS Data,
+        COUNT(*) AS QuantidadeProdutosComprados
+    FROM 
+        NomeDaTabelaDeVendas
+    GROUP BY 
+        CONVERT(date, DataCompra)
+    ORDER BY 
+        CONVERT(date, DataCompra) DESC;
+END;
